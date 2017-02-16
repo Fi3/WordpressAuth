@@ -2,11 +2,21 @@
 
 Add to settings.py
 
-1. WORDPRESS_URL
-2. WORDPRESS_ADMNIN_USER
-3. WORDPRESS_ADMIN_PASSWORD
-4. WORDPRESS_SESSION_MANAGER = 'JWT'
-5. WORDPRESS_AUTHENTICATION_METHOD = 'authenticateWcSubscription' or 'isAuthenticated'
+    WORDPRESS_URL = 'https://ex.com'
+    WORDPRESS_ADMNIN_USER = 'admin'
+    WORDPRESS_ADMIN_PASSWORD = 'adminPassword'
+    WORDPRESS_SESSION_MANAGER = 'JWT'
+    WORDPRESS_AUTHENTICATION_METHOD = 'authenticateWcSubscription' or 'isAuthenticated'
 
 ###TEST
+~mkdir test
+~cd test
+~virtualenv -p python3 env
+~source env/bin/activate
+~pip install django
+~pip install requests
+~django-admin startproject test
+~cd test
+
+
 python manage.py test
