@@ -25,7 +25,7 @@ class AuthBackEnd:
             except User.DoesNotExist:
                 password = User.objects.make_random_password()
                 user = User(username=username)
-                user.is_staff = True
+                user.is_staff = False
                 user.is_superuser = False
                 user.set_password(password)
                 user.save()
