@@ -9,4 +9,14 @@ Add to settings.py
     WORDPRESS_AUTHENTICATION_METHOD = 'authenticateWcSubscription' or 'isAuthenticated'
 
 ###TEST
+~mkdir test
+~cd test
+~virtualenv -p python3 env
+~source env/bin/activate
+~pip install django
+~pip install requests
+~django-admin startproject test
+~cd test
+
+
 python manage.py test
