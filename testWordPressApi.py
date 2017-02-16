@@ -1,6 +1,6 @@
 from django.test import TestCase
 from .WordpressAPI import WordpressAPI
-from .WordpressAPI import idFromUser
+from .WordpressAPI import idFromUsers
 from WordpressAuth.testData.fakeResponse import listUser
 
 class TestWordpressAPI(TestCase):
@@ -76,10 +76,10 @@ class TestWordpressAPI(TestCase):
 
     def test_idFromUser_returned_value_for_user_in_list(self):
         """
-        idFromUser(userList, user) should return the user id for an user in userList
+        idFromUsers(userList, user) should return the user id for an user in userList
         """
 
-        actual = idFromUser(listUser, 'pippo')
+        actual = idFromUsers(listUser, 'pippo')
         expected = 6
 
         self.assertEqual(actual, expected)
@@ -89,7 +89,7 @@ class TestWordpressAPI(TestCase):
         idFromUser(userList, user) should return `noSlug` for an user noty present in the list
         """
 
-        actual = idFromUser(listUser, 'canicanibauabu')
+        actual = idFromUsers(listUser, 'canicanibauabu')
         expected = 'noSlug:WordpressApi.idFromUser'
 
         self.assertEqual(actual, expected)

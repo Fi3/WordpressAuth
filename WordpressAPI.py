@@ -18,7 +18,6 @@ class WordpressAPI:
         self._adminSession = getattr(self, '_' + sessionManager,
                                     lambda a, b: 'no auth method')(admin, adminPassword);
         self._authMethod = authMethod;
-        self._checkAdminSession();
 
     def _JWT(self, user, password):
         """
