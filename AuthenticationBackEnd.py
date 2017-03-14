@@ -13,24 +13,28 @@ class AuthBackEnd:
         """
         Check the username and password and return an user
         """
-        authMethod = getattr(AuthenticationMethods, settings.WORDPRESS_AUTHENTICATION_METHOD)
-        wpApi = WordpressAPI(settings.WORDPRESS_URL, username, password,
-                             settings.WORDPRESS_ADMNIN_USER,
-                             settings.WORDPRESS_ADMIN_PASSWORD,
-                             settings.WORDPRESS_SESSION_MANAGER,
-                             authMethod)
-        if wpApi.isAuthenticated():
-            try:
-                user = User.objects.get(username=username)
-            except User.DoesNotExist:
-                password = User.objects.make_random_password()
-                user = User(username=username)
-                user.is_staff = False
-                user.is_superuser = False
-                user.set_password(password)
-                user.save()
-            return user
-        return None
+        try:
+            authMethod = getattr(AuthenticationMethods, settings.WORDPRESS_AUTHENTICATION_METHOD)
+            wpApi = WordpressAPI(settings.WORDPRESS_URL, username, password,
+                                 settings.WORDPRESS_ADMNIN_USER,
+                                 settings.WORDPRESS_ADMIN_PASSWORD,
+                                 settings.WORDPRESS_SESSION_MANAGER,
+                                 authMethod)
+            if wpApi.isAuthenticated():
+                try:
+                    user = User.objects.get(username=username)
+                except User.DoesNotExist:
+                    password = User.objects.make_random_password()
+                    user = User(username=username)
+                    user.is_staff = False
+                    user.is_superuser = False
+                    user.set_password(password)
+                    user.save()
+                return user
+            return None
+        except:
+            print('TODO AuthenticationBackEnd.py line 36')
+            return None
 
     def get_user(self, user_id):
         try:
